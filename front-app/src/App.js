@@ -4,7 +4,7 @@ import './App.css';
 import axios from 'axios';
 axios.defaults.withCredentials = true;
 // axios.defaults.headers['ContentType'] = 'application/json';
-
+const baseUrl = 'http://127.0.0.1:8000/'
 function App() {
   const [name,setName] = useState('')
   const change = (e) => {
@@ -12,15 +12,15 @@ function App() {
   }
   const myClick = async () =>{
     console.log(name)
-    let res = await axios.post('http://127.0.0.1:8000/write/',{name:name})
+    let res = await axios.post(`${baseUrl}write/`,{name:name})
     console.log(res)
   }
   const getData = async () =>{
-    let res = await axios.get('http://127.0.0.1:8000/read/')
-    console.log(res)
+    let res = await axios.get(`${baseUrl}read/`);
+    console.log(res);
   }
   const getOne = async () => {
-    let res = await axios.get('http://127.0.0.1:8000/read-one/',{params:{name:'volodya'}})
+    let res = await axios.get(`${baseUrl}read-one/`,{params:{name:'volodya'}})
     console.log(res)
   }
   useEffect(()=>{
